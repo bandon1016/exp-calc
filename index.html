@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天堂M經驗合併計算機</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #0f172a; /* Slate 900 */
+            color: #e2e8f0; /* Slate 200 */
+        }
+
+        .gold-text {
+            background: linear-gradient(to bottom, #fcd34d, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-border {
+            border-color: #d97706;
+        }
+
+        .card-bg {
+            background-color: #1e293b; /* Slate 800 */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+        }
+
+        .input-dark {
+            background-color: #0f172a;
+            border: 1px solid #475569;
+            color: #f8fafc;
+        }
+        
+        .input-dark:focus {
+            border-color: #f59e0b;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+        }
+
+        .input-error {
+            border-color: #ef4444 !important; /* Red-500 */
+            background-color: #450a0a; /* Red-950 */
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+        -moz-appearance: textfield;
+        }
+        
+        .operator-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #64748b; /* Slate 500 */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+
+    <div class="w-full max-w-7xl">
+        <!-- Header -->
+        <div class="text-center mb-6">
+            <h1 class="text-3xl md:text-5xl font-bold uppercase tracking-wider">
+                <span class="gold-text">天堂M</span> 經驗合併計算機
+            </h1>
+            <p class="text-slate-400 mt-2 text-sm md:text-base">練功太辛苦？把分身吃掉補一補！</p>
+            <a href="https://www.youtube.com/@bandonplay" target="_blank" class="text-yellow-600 hover:text-yellow-400 text-xs md:text-sm mt-2 inline-block transition-colors font-bold tracking-wide">
+                製作：編董不雷
+            </a>
+        </div>
+
+        <!-- Navbar Links -->
+        <div class="flex flex-wrap justify-center gap-3 mb-6 px-4">
+            <a href="https://bandon1016.github.io/job-change-cost/" target="_blank" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-yellow-400 rounded-lg text-xs md:text-sm transition-all border border-slate-700 hover:border-yellow-500/50 shadow-sm flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+                轉職袋子需求計算機
+            </a>
+            <a href="https://www.youtube.com/watch?v=JIauw6VhzUM" target="_blank" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-yellow-400 rounded-lg text-xs md:text-sm transition-all border border-slate-700 hover:border-yellow-500/50 shadow-sm flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                暗騎轉職技能推薦
+            </a>
+            <a href="https://bandon1016.github.io/info-output/" target="_blank" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-yellow-400 rounded-lg text-xs md:text-sm transition-all border border-slate-700 hover:border-yellow-500/50 shadow-sm flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                帳號價值估價單(須回傳給編董)
+            </a>
+        </div>
+
+        <!-- Settings Section -->
+        <div class="mb-6 bg-slate-800/50 p-3 rounded-xl border border-slate-700 max-w-2xl mx-auto backdrop-blur-sm">
+            <div class="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-6">
+                <span class="text-white font-bold text-sm md:text-base">合併損失設定：</span>
+                <div class="flex items-center space-x-6">
+                    <label class="inline-flex items-center cursor-pointer hover:text-yellow-400 transition-colors group">
+                        <input type="radio" name="ratio" value="0.8" class="form-radio text-yellow-500 focus:ring-yellow-500 h-5 w-5 bg-slate-900 border-slate-600" checked tabindex="-1" onchange="calculateMerge()">
+                        <span class="ml-2 text-slate-300 group-hover:text-yellow-400 text-sm md:text-base">保留 80% (預設)</span>
+                    </label>
+                    <label class="inline-flex items-center cursor-pointer hover:text-yellow-400 transition-colors group">
+                        <input type="radio" name="ratio" value="1.0" class="form-radio text-yellow-500 focus:ring-yellow-500 h-5 w-5 bg-slate-900 border-slate-600" tabindex="-1" onchange="calculateMerge()">
+                        <span class="ml-2 text-slate-300 group-hover:text-yellow-400 text-sm md:text-base">保留 100%</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area: A + B => C -->
+        <div class="flex flex-col lg:flex-row items-stretch justify-center gap-4 relative mb-12">
+            
+            <!-- 1. Main Character -->
+            <div class="flex-1 card-bg p-6 rounded-xl border-t-4 gold-border flex flex-col justify-start min-h-[320px]">
+                <h2 class="text-xl font-bold mb-4 text-white flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    主要角色 (Main)
+                </h2>
+                <div class="space-y-4 flex-grow">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-1">等級 (Level)</label>
+                        <input type="number" id="mainLevel" class="input-dark w-full px-4 py-3 rounded-lg text-lg font-mono transition-colors" placeholder="85" min="1" max="93" value="85" tabindex="1" oninput="validateInputs(); calculateMerge()">
+                        <p id="mainLevelError" class="text-red-500 text-xs mt-1 hidden">※ 需 85 級 (含) 以上</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-1">當前經驗值 %</label>
+                        <div class="relative">
+                            <input type="number" id="mainPercent" class="input-dark w-full px-4 py-3 rounded-lg text-lg font-mono" placeholder="0.0000" min="0" max="99.9999" step="0.0001" value="0" tabindex="2" oninput="calculateMerge()">
+                            <span class="absolute right-4 top-3 text-slate-500">%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Operator (+) -->
+            <div class="operator-icon lg:w-8 py-2 lg:py-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4" />
+                </svg>
+            </div>
+
+            <!-- 2. Sacrifice Character -->
+            <div class="flex-1 card-bg p-6 rounded-xl border-t-4 border-slate-600 flex flex-col justify-start min-h-[320px]">
+                <h2 class="text-xl font-bold mb-4 text-white flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    被合併角色 (Sacrifice)
+                </h2>
+                <div class="space-y-4 flex-grow">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-1">等級 (Level)</label>
+                        <input type="number" id="subLevel" class="input-dark w-full px-4 py-3 rounded-lg text-lg font-mono transition-colors" placeholder="80" min="1" max="93" value="80" tabindex="3" oninput="validateInputs(); calculateMerge()">
+                        <p id="subLevelError" class="text-red-500 text-xs mt-1 hidden">※ 需 80 級 (含) 以上</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-1">當前經驗值 %</label>
+                        <div class="relative">
+                            <input type="number" id="subPercent" class="input-dark w-full px-4 py-3 rounded-lg text-lg font-mono" placeholder="0.0000" min="0" max="99.9999" step="0.0001" value="0" tabindex="4" oninput="calculateMerge()">
+                            <span class="absolute right-4 top-3 text-slate-500">%</span>
+                        </div>
+                    </div>
+                    <p class="text-red-400 text-sm mt-2 pt-2 font-bold">
+                        ※ 合併後此角色等級將退回 Lv.1 的 0% 狀態，其餘不受影響。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Operator (=>) -->
+            <div class="operator-icon lg:w-8 py-2 lg:py-0">
+                <!-- Right arrow for desktop -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-slate-600 hidden lg:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+                <!-- Down arrow for mobile -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-slate-600 lg:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M16 17l-4 4m0 0l-4-4m4 4V3" />
+                </svg>
+            </div>
+
+            <!-- 3. Result Section (Always visible now) -->
+            <div class="flex-1 relative overflow-hidden card-bg rounded-xl border border-yellow-500/30 flex flex-col justify-between min-h-[320px]">
+                <!-- Glowing background effect -->
+                <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-yellow-500/5 to-transparent pointer-events-none"></div>
+                
+                <div class="p-6 text-center relative z-10 flex flex-col h-full">
+                    <h2 class="text-xl font-bold mb-4 text-white flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        合併結果 (Result)
+                    </h2>
+                    
+                    <div class="flex-grow flex flex-col items-center justify-center py-4">
+                        <div class="text-5xl lg:text-6xl font-black text-white drop-shadow-[0_0_10px_rgba(234,179,8,0.5)] transition-all duration-300" id="resultLevelContainer">
+                            Lv.<span id="resultLevel">--</span>
+                        </div>
+                        <div class="text-2xl lg:text-3xl font-bold mt-2 gold-text transition-all duration-300" id="resultPercentContainer">
+                            <span id="resultPercent">--</span>%
+                        </div>
+                        
+                        <!-- Progress Bar -->
+                        <div class="w-full bg-slate-700 h-3 rounded-full mt-6 overflow-hidden border border-slate-600">
+                            <div id="progressBar" class="h-full bg-gradient-to-r from-yellow-600 via-yellow-400 to-white w-0 transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(234,179,8,0.8)]"></div>
+                        </div>
+                    </div>
+
+                    <!-- Removed "計算結果" button -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 92 Level Calculator Section -->
+        <div class="card-bg p-8 rounded-xl border border-blue-500/30 w-full max-w-4xl mx-auto mb-12 relative overflow-hidden">
+             <!-- Blue glowing background effect -->
+             <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-500/10 to-transparent pointer-events-none"></div>
+
+            <h2 class="text-2xl font-bold mb-6 text-white flex items-center justify-center relative z-10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                92級衝等計算機 (Time to Lv.92)
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">目前等級 (Current Lv)</label>
+                    <input type="number" id="calc92_level" class="input-dark w-full px-4 py-3 rounded-lg text-lg font-mono" placeholder="85" min="1" max="93" oninput="calculateTime92()">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">目前經驗值 %</label>
+                    <div class="relative">
+                        <input type="number" id="calc92_percent" class="input-dark w-full px-4 py-3 rounded-lg text-lg font-mono" placeholder="0.0000" min="0" max="99.9999" step="0.0001" oninput="calculateTime92()">
+                        <span class="absolute right-4 top-3 text-slate-500">%</span>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">每天經驗值成長 %</label>
+                    <div class="relative">
+                        <input type="number" id="calc92_daily" class="input-dark w-full px-4 py-3 rounded-lg text-lg font-mono" placeholder="0.1234" min="0" step="0.0001" oninput="calculateTime92()">
+                        <span class="absolute right-4 top-3 text-slate-500">%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 flex justify-center relative z-10">
+                <button onclick="calculateTime92()" class="w-full md:w-1/2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white text-lg font-bold py-3 px-8 rounded-lg transform transition hover:-translate-y-1 shadow-lg shadow-blue-500/20">
+                    計算天數
+                </button>
+            </div>
+
+            <div id="result92_area" class="mt-6 text-center hidden">
+                <div class="p-4 bg-slate-900/80 rounded-lg border border-slate-700 text-lg md:text-xl leading-relaxed">
+                    <p id="result92_text" class="text-slate-200"></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Data derived from the user's latest CSV file (Up to Level 93)
+        // Levels 90-93 are based on the user's latest provided data points.
+        // cumulative is the XP at the END of that level
+        const xpTable = [
+            {"level": 1, "upgrade": 5.0, "cumulative": 5.0},
+            {"level": 2, "upgrade": 10.0, "cumulative": 15.0},
+            {"level": 3, "upgrade": 15.0, "cumulative": 30.0},
+            {"level": 4, "upgrade": 20.0, "cumulative": 50.0},
+            {"level": 5, "upgrade": 25.0, "cumulative": 75.0},
+            {"level": 6, "upgrade": 30.0, "cumulative": 105.0},
+            {"level": 7, "upgrade": 35.0, "cumulative": 140.0},
+            {"level": 8, "upgrade": 40.0, "cumulative": 180.0},
+            {"level": 9, "upgrade": 45.0, "cumulative": 225.0},
+            {"level": 10, "upgrade": 42.0, "cumulative": 267.0},
+            {"level": 11, "upgrade": 95.0, "cumulative": 362.0},
+            {"level": 12, "upgrade": 202.0, "cumulative": 564.0},
+            {"level": 13, "upgrade": 405.0, "cumulative": 969.0},
+            {"level": 14, "upgrade": 776.0, "cumulative": 1745.0},
+            {"level": 15, "upgrade": 1422.0, "cumulative": 3167.0},
+            {"level": 16, "upgrade": 2514.0, "cumulative": 5681.0},
+            {"level": 17, "upgrade": 4302.0, "cumulative": 9983.0},
+            {"level": 18, "upgrade": 7151.0, "cumulative": 17134.0},
+            {"level": 19, "upgrade": 11582.0, "cumulative": 28716.0},
+            {"level": 20, "upgrade": 18321.0, "cumulative": 47037.0},
+            {"level": 21, "upgrade": 28371.0, "cumulative": 75408.0},
+            {"level": 22, "upgrade": 43086.0, "cumulative": 118494.0},
+            {"level": 23, "upgrade": 64281.0, "cumulative": 182775.0},
+            {"level": 24, "upgrade": 94348.0, "cumulative": 277123.0},
+            {"level": 25, "upgrade": 136409.0, "cumulative": 413532.0},
+            {"level": 26, "upgrade": 194497.0, "cumulative": 608029.0},
+            {"level": 27, "upgrade": 273766.0, "cumulative": 881795.0},
+            {"level": 28, "upgrade": 380746.0, "cumulative": 1262541.0},
+            {"level": 29, "upgrade": 523642.0, "cumulative": 1786183.0},
+            {"level": 30, "upgrade": 712660.0, "cumulative": 2498843.0},
+            {"level": 31, "upgrade": 960500.0, "cumulative": 3459343.0},
+            {"level": 32, "upgrade": 1282700.0, "cumulative": 4742043.0},
+            {"level": 33, "upgrade": 1698220.0, "cumulative": 6440263.0},
+            {"level": 34, "upgrade": 2230140.0, "cumulative": 8670403.0},
+            {"level": 35, "upgrade": 2906260.0, "cumulative": 11576663.0},
+            {"level": 36, "upgrade": 3760000.0, "cumulative": 15336663.0},
+            {"level": 37, "upgrade": 4831240.0, "cumulative": 20167903.0},
+            {"level": 38, "upgrade": 6167380.0, "cumulative": 26335283.0},
+            {"level": 39, "upgrade": 7824520.0, "cumulative": 34159803.0},
+            {"level": 40, "upgrade": 9868740.0, "cumulative": 44028543.0},
+            {"level": 41, "upgrade": 12377620.0, "cumulative": 56406163.0},
+            {"level": 42, "upgrade": 15441760.0, "cumulative": 71847923.0},
+            {"level": 43, "upgrade": 19166760.0, "cumulative": 91014683.0},
+            {"level": 44, "upgrade": 23675080.0, "cumulative": 114689763.0},
+            {"level": 45, "upgrade": 43662500.0, "cumulative": 158352263.0},
+            {"level": 46, "upgrade": 53444740.0, "cumulative": 211797003.0},
+            {"level": 47, "upgrade": 65140740.0, "cumulative": 276937743.0},
+            {"level": 48, "upgrade": 79073000.0, "cumulative": 356010743.0},
+            {"level": 49, "upgrade": 95609960.0, "cumulative": 451620703.0},
+            {"level": 50, "upgrade": 115171420.0, "cumulative": 566792123.0},
+            {"level": 51, "upgrade": 138234520.0, "cumulative": 705026643.0},
+            {"level": 52, "upgrade": 165340120.0, "cumulative": 870366763.0},
+            {"level": 53, "upgrade": 197099900.0, "cumulative": 1067466663.0},
+            {"level": 54, "upgrade": 234204040.0, "cumulative": 1301670703.0},
+            {"level": 55, "upgrade": 277429440.0, "cumulative": 1579100143.0},
+            {"level": 56, "upgrade": 327648920.0, "cumulative": 1906749063.0},
+            {"level": 57, "upgrade": 385840880.0, "cumulative": 2292589943.0},
+            {"level": 58, "upgrade": 453099940.0, "cumulative": 2745689883.0},
+            {"level": 59, "upgrade": 530648380.0, "cumulative": 3276338263.0},
+            {"level": 60, "upgrade": 619848494.0, "cumulative": 3896186757.0},
+            {"level": 61, "upgrade": 722215795.0, "cumulative": 4618402552.0},
+            {"level": 62, "upgrade": 839433440.0, "cumulative": 5457835992.0},
+            {"level": 63, "upgrade": 973367534.0, "cumulative": 6431203526.0},
+            {"level": 64, "upgrade": 1126083652.0, "cumulative": 7557287178.0},
+            {"level": 65, "upgrade": 1381106070.0, "cumulative": 8938393248.0},
+            {"level": 66, "upgrade": 1684382688.0, "cumulative": 10622775936.0},
+            {"level": 67, "upgrade": 2043631079.0, "cumulative": 12666407015.0},
+            {"level": 68, "upgrade": 2467610259.0, "cumulative": 15134017274.0},
+            {"level": 69, "upgrade": 2933237966.0, "cumulative": 18067255240.0},
+            {"level": 70, "upgrade": 3550718780.0, "cumulative": 21617974020.0},
+            {"level": 71, "upgrade": 4233683820.0, "cumulative": 25851657840.0},
+            {"level": 72, "upgrade": 5029342883.0, "cumulative": 30881000723.0},
+            {"level": 73, "upgrade": 5953649898.0, "cumulative": 36834650621.0},
+            {"level": 74, "upgrade": 7024482619.0, "cumulative": 43859133240.0},
+            {"level": 75, "upgrade": 8261837524.0, "cumulative": 52120970764.0},
+            {"level": 76, "upgrade": 9688040963.0, "cumulative": 61809011727.0},
+            {"level": 77, "upgrade": 11327977600.0, "cumulative": 73136989327.0},
+            {"level": 78, "upgrade": 13209337337.0, "cumulative": 86346326664.0},
+            {"level": 79, "upgrade": 15362881827.0, "cumulative": 101709208491.0},
+            {"level": 80, "upgrade": 17822734896.0, "cumulative": 119531943387.0},
+            {"level": 81, "upgrade": 20001626310.0, "cumulative": 139533569697.0},
+            {"level": 82, "upgrade": 22415537902.0, "cumulative": 161949107599.0},
+            {"level": 83, "upgrade": 25096518006.0, "cumulative": 187045625605.0},
+            {"level": 84, "upgrade": 28038385232.0, "cumulative": 215084010837.0},
+            {"level": 85, "upgrade": 31296843514.0, "cumulative": 246380854351.0},
+            {"level": 86, "upgrade": 93890530542.0, "cumulative": 340271384893.0},
+            {"level": 87, "upgrade": 375562122168.0, "cumulative": 715833507061.0},
+            {"level": 88, "upgrade": 1502248488672.0, "cumulative": 2218081995733.0},
+            {"level": 89, "upgrade": 6008993954688.0, "cumulative": 8227075950421.0},
+            // NEW DATA BELOW (User provided for Lvl 90+)
+            {"level": 90, "upgrade": 36053963728128.0, "cumulative": 44281039678809.0},
+            {"level": 91, "upgrade": 216323782368768.0, "cumulative": 260604822047577.0},
+            {"level": 92, "upgrade": 648971347106304.0, "cumulative": 909576169153621.0},
+            {"level": 93, "upgrade": 3893828082637820.0, "cumulative": 4803404251791441.0}
+        ];
+
+        function getTableData(level) {
+            return xpTable.find(d => d.level === level);
+        }
+
+        // Calculate Total Experience based on Level and Percent
+        function calculateTotalExp(level, percent) {
+            if (level < 1) return 0;
+            
+            const currentLevelData = getTableData(level);
+            if (!currentLevelData) return 0; // Out of range
+            
+            let prevCumulative = 0;
+            if (level > 1) {
+                const prevLevelData = getTableData(level - 1);
+                if (prevLevelData) {
+                    prevCumulative = prevLevelData.cumulative;
+                }
+            }
+
+            const progressExp = currentLevelData.upgrade * (percent / 100);
+            return prevCumulative + progressExp;
+        }
+
+        // Inverse: Find Level and Percent from Total XP
+        function calculateLevelAndPercent(totalExp) {
+            let foundLevel = 0;
+            let foundPercent = 0;
+
+            const maxData = xpTable[xpTable.length - 1];
+            if (totalExp >= maxData.cumulative) {
+                return { level: maxData.level, percent: 100.0000 };
+            }
+
+            for (let i = 0; i < xpTable.length; i++) {
+                const data = xpTable[i];
+                if (totalExp < data.cumulative) {
+                    foundLevel = data.level;
+                    
+                    let startExp = 0;
+                    if (i > 0) {
+                        startExp = xpTable[i-1].cumulative;
+                    }
+
+                    const expInLevel = totalExp - startExp;
+                    foundPercent = (expInLevel / data.upgrade) * 100;
+                    
+                    return { level: foundLevel, percent: foundPercent };
+                }
+            }
+            
+            return { level: 93, percent: 100 };
+        }
+
+        function validateInputs() {
+            const mainLvlInput = document.getElementById('mainLevel');
+            const subLvlInput = document.getElementById('subLevel');
+            const mainError = document.getElementById('mainLevelError');
+            const subError = document.getElementById('subLevelError');
+            
+            const mainLvl = parseInt(mainLvlInput.value) || 0;
+            const subLvl = parseInt(subLvlInput.value) || 0;
+            
+            if (mainLvl < 85) {
+                mainLvlInput.classList.add('input-error');
+                mainError.classList.remove('hidden');
+            } else {
+                mainLvlInput.classList.remove('input-error');
+                mainError.classList.add('hidden');
+            }
+
+            if (subLvl < 80) {
+                subLvlInput.classList.add('input-error');
+                subError.classList.remove('hidden');
+            } else {
+                subLvlInput.classList.remove('input-error');
+                subError.classList.add('hidden');
+            }
+        }
+
+        function calculateMerge() {
+            // Validate inputs visually
+            validateInputs();
+
+            const mainLvl = parseInt(document.getElementById('mainLevel').value) || 1;
+            const mainPct = parseFloat(document.getElementById('mainPercent').value) || 0;
+            const subLvl = parseInt(document.getElementById('subLevel').value) || 1;
+            const subPct = parseFloat(document.getElementById('subPercent').value) || 0;
+            
+            // Check if any critical input is missing before calculating
+            if (!mainLvl || !subLvl || mainPct === null || subPct === null) {
+                document.getElementById('resultLevel').innerText = '--';
+                document.getElementById('resultPercent').innerText = '--';
+                document.getElementById('progressBar').style.width = '0%';
+                return;
+            }
+
+            const radios = document.getElementsByName('ratio');
+            let ratio = 0.8;
+            for (const r of radios) {
+                if (r.checked) {
+                    ratio = parseFloat(r.value);
+                    break;
+                }
+            }
+
+            const mainTotal = calculateTotalExp(mainLvl, mainPct);
+            const subTotal = calculateTotalExp(subLvl, subPct);
+            
+            const gainedExp = subTotal * ratio;
+            const newTotalExp = mainTotal + gainedExp;
+
+            const result = calculateLevelAndPercent(newTotalExp);
+
+            document.getElementById('resultLevel').innerText = result.level;
+            document.getElementById('resultPercent').innerText = result.percent.toFixed(4);
+            
+            const bar = document.getElementById('progressBar');
+            bar.style.width = Math.min(result.percent, 100) + '%';
+        }
+
+        function calculateTime92() {
+            const lvl = parseInt(document.getElementById('calc92_level').value) || 1;
+            const pct = parseFloat(document.getElementById('calc92_percent').value) || 0;
+            const dailyPct = parseFloat(document.getElementById('calc92_daily').value) || 0;
+            
+            const resultArea = document.getElementById('result92_area');
+            const resultText = document.getElementById('result92_text');
+            resultArea.classList.remove('hidden');
+
+            if (lvl >= 92) {
+                resultText.innerHTML = `<span class="text-yellow-400 font-bold">恭喜！</span> 你已經達到或超過 92 級了！`;
+                return;
+            }
+
+            if (dailyPct <= 0) {
+                resultText.innerHTML = `<span class="text-red-400">錯誤：</span> 請輸入有效的每日經驗值成長 %`;
+                return;
+            }
+
+            const currentTotalXP = calculateTotalExp(lvl, pct);
+            
+            // Target XP for Level 92 (which is the cumulative XP of Level 91)
+            const targetData = xpTable.find(d => d.level === 91);
+            if (!targetData) {
+                resultText.innerHTML = "資料錯誤";
+                return;
+            }
+            const targetXP = targetData.cumulative;
+
+            const remainingXP = targetXP - currentTotalXP;
+
+            if (remainingXP <= 0) {
+                 resultText.innerHTML = `<span class="text-yellow-400 font-bold">恭喜！</span> 你的經驗值已經足夠升上 92 級了！`;
+                 return;
+            }
+
+            const currentLevelData = getTableData(lvl);
+            if (!currentLevelData) {
+                resultText.innerHTML = "等級資料錯誤";
+                return;
+            }
+            const dailyXP = currentLevelData.upgrade * (dailyPct / 100);
+
+            const daysNeeded = Math.ceil(remainingXP / dailyXP);
+
+            let timeString = "";
+            if (daysNeeded > 365) {
+                const years = Math.floor(daysNeeded / 365);
+                const days = daysNeeded % 365;
+                timeString = `<span class="text-yellow-400 text-2xl font-bold mx-1">${years}</span> 年 <span class="text-yellow-400 text-2xl font-bold mx-1">${days}</span> 天`;
+            } else {
+                timeString = `<span class="text-yellow-400 text-2xl font-bold mx-1">${daysNeeded}</span> 天`;
+            }
+
+            resultText.innerHTML = `
+                你目前等級是 <span class="text-white font-bold">${lvl}</span>，
+                經驗值是 <span class="text-white font-bold">${pct}%</span>，
+                每天可以練 <span class="text-white font-bold">${dailyPct}%</span>，<br class="md:hidden">
+                達到 92 級還有 ${timeString}，加油！
+            `;
+        }
+        
+        // Initial calculation on load for default values
+        window.onload = () => {
+            calculateMerge();
+            calculateTime92();
+        }
+    </script>
+</body>
+</html>
