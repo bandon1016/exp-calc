@@ -41,6 +41,10 @@
             box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
         }
 
+        select.input-dark {
+            color-scheme: dark;
+        }
+
         .input-error {
             border-color: #ef4444 !important; /* Red-500 */
             background-color: #450a0a; /* Red-950 */
@@ -65,6 +69,175 @@
             font-size: 2rem;
             color: #64748b; /* Slate 500 */
             font-weight: bold;
+        }
+
+        .target-input-group {
+            min-width: 0;
+        }
+
+        .target-result-number {
+            text-shadow: 0 0 18px rgba(245, 158, 11, 0.22);
+        }
+
+        .journey-scroll {
+            overflow-x: auto;
+            padding: 0.5rem 0 0.75rem;
+            scrollbar-color: #475569 #0f172a;
+            scrollbar-width: thin;
+        }
+
+        .journey-track {
+            position: relative;
+            display: flex;
+            width: 100%;
+            min-width: max-content;
+            align-items: flex-start;
+        }
+
+        .journey-track::before {
+            content: '';
+            position: absolute;
+            z-index: 0;
+            top: 2.7rem;
+            left: 0.75rem;
+            right: 2.25rem;
+            height: 4px;
+            background: linear-gradient(90deg, #f59e0b 0%, #f8d27a 55%, #60a5fa 100%);
+        }
+
+        .journey-segment {
+            flex: 1 0 180px;
+            min-width: 180px;
+        }
+
+        .journey-final {
+            flex: 0 0 72px;
+            min-width: 72px;
+        }
+
+        .journey-level {
+            margin-bottom: 0.75rem;
+            color: #f8fafc;
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.25;
+        }
+
+        .journey-final .journey-level {
+            text-align: center;
+        }
+
+        .journey-marker-row {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .journey-node {
+            display: block;
+            width: 1.5rem;
+            height: 1.5rem;
+            flex: 0 0 1.5rem;
+            border: 4px solid #f8d27a;
+            border-radius: 9999px;
+            background: #1e293b;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.08);
+        }
+
+        .journey-node-current {
+            border-color: #fbbf24;
+            background: #f59e0b;
+            box-shadow: 0 0 16px rgba(245, 158, 11, 0.65);
+        }
+
+        .journey-node-target {
+            margin-inline: auto;
+            border-color: #60a5fa;
+            background: #2563eb;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+        }
+
+        .journey-line {
+            display: block;
+            height: 4px;
+            flex: 1;
+            background: transparent;
+        }
+
+        .journey-days {
+            margin-top: 0.75rem;
+            margin-left: 1.5rem;
+            color: #fbbf24;
+            font-size: 1rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        @media (max-width: 640px) {
+            .journey-scroll {
+                overflow-x: visible;
+            }
+
+            .journey-track {
+                display: block;
+                min-width: 0;
+            }
+
+            .journey-track::before {
+                display: none;
+            }
+
+            .journey-segment,
+            .journey-final {
+                display: grid;
+                min-width: 0;
+                grid-template-columns: 4.25rem 2rem minmax(0, 1fr);
+                grid-template-areas: "level marker days";
+                align-items: start;
+            }
+
+            .journey-segment {
+                min-height: 5rem;
+            }
+
+            .journey-final {
+                min-height: 2rem;
+            }
+
+            .journey-level,
+            .journey-final .journey-level {
+                grid-area: level;
+                margin: 0;
+                padding-top: 0.125rem;
+                text-align: left;
+            }
+
+            .journey-marker-row {
+                grid-area: marker;
+                height: 5rem;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .journey-line {
+                width: 4px;
+                height: auto;
+                flex: 1;
+                background: linear-gradient(180deg, #f59e0b 0%, #f8d27a 55%, #60a5fa 100%);
+            }
+
+            .journey-days {
+                grid-area: days;
+                margin: 0;
+                padding: 0.125rem 0 0 0.75rem;
+                text-align: left;
+            }
+
+            .journey-final .journey-node {
+                grid-area: marker;
+                margin: 0 auto;
+            }
         }
     </style>
 </head>
@@ -225,62 +398,74 @@
                 </svg>
                 轉職袋子需求計算機
             </a>
-            <a href="https://www.youtube.com/watch?v=JIauw6VhzUM" target="_blank" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-yellow-400 rounded-lg text-xs md:text-sm transition-all border border-slate-700 hover:border-yellow-500/50 shadow-sm flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                暗騎轉職技能推薦
-            </a>
-            <a href="https://bandon1016.github.io/info-output/" target="_blank" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-yellow-400 rounded-lg text-xs md:text-sm transition-all border border-slate-700 hover:border-yellow-500/50 shadow-sm flex items-center">
+            <a href="https://bandon1016.github.io/job-change/" target="_blank" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-yellow-400 rounded-lg text-xs md:text-sm transition-all border border-slate-700 hover:border-yellow-500/50 shadow-sm flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                帳號價值估價單(須回傳給編董)
+                改版轉職建議白皮書
             </a>
         </div>
 
 
-        <!-- 92 Level Calculator Section -->
-        <div class="card-bg p-8 rounded-xl border border-blue-500/30 w-full max-w-4xl mx-auto mb-12 relative overflow-hidden">
-             <!-- Blue glowing background effect -->
-             <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-500/10 to-transparent pointer-events-none"></div>
+        <!-- Target Level Calculator Section -->
+        <section class="card-bg p-5 md:p-8 rounded-xl border border-blue-500/30 w-full max-w-6xl mx-auto mb-12 relative overflow-hidden" aria-labelledby="targetCalculatorTitle">
+            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-500/10 to-transparent pointer-events-none"></div>
 
-            <h2 class="text-2xl font-bold mb-6 text-white flex items-center justify-center relative z-10">
+            <h2 id="targetCalculatorTitle" class="text-2xl md:text-3xl font-bold mb-6 text-white flex items-center relative z-10">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                92級衝等計算機 (Time to Lv.92)
+                目標等級時間計算器
             </h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
-                <div>
-                    <label class="block text-sm font-medium text-slate-300 mb-1">目前等級 (Current Lv)</label>
-                    <input type="number" id="calc92_level" class="input-dark w-full px-4 py-3 rounded-lg text-lg font-mono" placeholder="85" min="1" max="93" oninput="calculateTime92()">
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 p-5 md:p-6 bg-slate-900/35 rounded-xl border border-slate-700/80 relative z-10">
+                <div class="target-input-group">
+                    <label for="targetCurrentLevel" class="block text-sm font-medium text-slate-300 mb-2">目前等級</label>
+                    <select id="targetCurrentLevel" class="input-dark w-full px-4 py-3 rounded-lg text-lg font-mono transition-colors cursor-pointer" onchange="handleCurrentLevelChange()" aria-label="目前等級">
+                        <option value="">請選擇等級</option>
+                    </select>
                 </div>
-                <div>
-                    <label class="block text-sm font-medium text-slate-300 mb-1">目前經驗值 %</label>
+                <div class="target-input-group">
+                    <label for="targetCurrentPercent" class="block text-sm font-medium text-slate-300 mb-2">目前經驗值 %</label>
                     <div class="relative">
-                        <input type="number" id="calc92_percent" class="input-dark w-full px-4 py-3 rounded-lg text-lg font-mono" placeholder="0.0000" min="0" max="99.9999" step="0.0001" oninput="calculateTime92()">
+                        <input type="number" id="targetCurrentPercent" class="input-dark w-full px-4 py-3 pr-12 rounded-lg text-lg font-mono transition-colors" placeholder="0.0000" min="0" max="99.9999" step="0.0001" inputmode="decimal" oninput="calculateTargetTime()">
                         <span class="absolute right-4 top-3 text-slate-500">%</span>
                     </div>
                 </div>
-                <div>
-                    <label class="block text-sm font-medium text-slate-300 mb-1">每天經驗值成長 %</label>
+                <div class="target-input-group">
+                    <label for="targetDailyPercent" class="block text-sm font-medium text-slate-300 mb-2">每日成長經驗 %</label>
                     <div class="relative">
-                        <input type="number" id="calc92_daily" class="input-dark w-full px-4 py-3 rounded-lg text-lg font-mono" placeholder="0.1234" min="0" step="0.0001" oninput="calculateTime92()">
+                        <input type="number" id="targetDailyPercent" class="input-dark w-full px-4 py-3 pr-12 rounded-lg text-lg font-mono transition-colors" placeholder="0.0000" min="0.0001" step="0.0001" inputmode="decimal" oninput="calculateTargetTime()">
                         <span class="absolute right-4 top-3 text-slate-500">%</span>
                     </div>
+                </div>
+                <div class="target-input-group">
+                    <label for="targetGoalLevel" class="block text-sm font-medium text-slate-300 mb-2">目標等級</label>
+                    <select id="targetGoalLevel" class="input-dark w-full px-4 py-3 rounded-lg text-lg font-mono transition-colors cursor-pointer" onchange="calculateTargetTime()" aria-label="目標等級">
+                        <option value="">請選擇等級</option>
+                    </select>
                 </div>
             </div>
 
-            <!-- Calculation is now automatic -->
-            <div id="result92_area" class="mt-6 text-center">
-                <div class="p-4 bg-slate-900/80 rounded-lg border border-slate-700 text-lg md:text-xl leading-relaxed">
-                    <p id="result92_text" class="text-slate-200">請輸入資料後查看結果</p>
+            <p id="targetError" class="hidden mt-4 text-red-400 text-sm font-medium relative z-10" role="alert"></p>
+
+            <div id="targetResult" class="mt-8 relative z-10" aria-live="polite">
+                <p class="text-slate-400 text-base md:text-lg">預計還需要</p>
+                <div class="mt-1 flex flex-wrap items-baseline gap-x-3">
+                    <span id="targetDays" class="target-result-number gold-text text-5xl md:text-7xl font-black tracking-tight">--</span>
+                    <span class="text-3xl md:text-5xl font-black text-yellow-500">天</span>
                 </div>
+                <p id="targetDuration" class="mt-2 text-xl md:text-2xl font-bold text-slate-300">請輸入資料後查看結果</p>
+
+                <div class="mt-7 pt-6 border-t border-slate-700/80">
+                    <div id="targetJourney" class="journey-scroll" aria-label="升級旅程"></div>
+                </div>
+
+                <p id="targetBasis" class="mt-5 px-4 py-3 rounded-lg bg-slate-900/45 border border-slate-700 text-blue-400 text-sm md:text-base font-medium">
+                    每日成長會依目前等級換算成固定經驗值
+                </p>
             </div>
-        </div>
+        </section>
 
     </div>
 
@@ -505,80 +690,216 @@
             bar.style.width = Math.min(result.percent, 100) + '%';
         }
 
-        function calculateTime92() {
-            const lvl = parseInt(document.getElementById('calc92_level').value) || 1;
-            const pct = parseFloat(document.getElementById('calc92_percent').value) || 0;
-            const dailyPct = parseFloat(document.getElementById('calc92_daily').value) || 0;
-            
-            const resultArea = document.getElementById('result92_area');
-            const resultText = document.getElementById('result92_text');
-            resultArea.classList.remove('hidden');
+        function getLevelStartExp(level) {
+            if (level <= 1) return 0;
+            const previousLevelData = getTableData(level - 1);
+            return previousLevelData ? previousLevelData.cumulative : null;
+        }
 
-            if (lvl >= 92) {
-                resultText.innerHTML = `<span class="text-yellow-400 font-bold">恭喜！</span> 你已經達到或超過 92 級了！`;
-                return;
+        function formatWholeNumber(value) {
+            return new Intl.NumberFormat('zh-TW', { maximumFractionDigits: 0 }).format(value);
+        }
+
+        function formatPercent(value) {
+            return new Intl.NumberFormat('zh-TW', { maximumFractionDigits: 4 }).format(value);
+        }
+
+        function setTargetInputInvalid(input, isInvalid) {
+            input.classList.toggle('input-error', isInvalid);
+            input.setAttribute('aria-invalid', isInvalid ? 'true' : 'false');
+        }
+
+        function populateLevelSelect(select, minLevel, maxLevel, selectedValue = '') {
+            select.innerHTML = '<option value="">請選擇等級</option>';
+
+            for (let level = minLevel; level <= maxLevel; level++) {
+                const option = document.createElement('option');
+                option.value = String(level);
+                option.textContent = `${level} 級`;
+                select.appendChild(option);
             }
 
-            if (dailyPct <= 0) {
-                // Display initial prompt or error, but don't hide the area
-                resultText.innerHTML = `<span class="text-red-400">錯誤：</span> 請輸入有效的每日經驗值成長 %`;
-                return;
+            const selectedLevel = Number(selectedValue);
+            if (Number.isInteger(selectedLevel) && selectedLevel >= minLevel && selectedLevel <= maxLevel) {
+                select.value = String(selectedLevel);
             }
-            
-            // Check if any critical input is missing before calculating time
-            if (!lvl || pct === null || dailyPct === null) {
-                resultText.innerHTML = `請輸入等級、當前經驗值 % 與每日成長 % 以查看結果`;
-                return;
-            }
+        }
 
+        function initializeTargetLevelSelects() {
+            populateLevelSelect(document.getElementById('targetCurrentLevel'), 1, 92);
+            populateLevelSelect(document.getElementById('targetGoalLevel'), 2, 93);
+        }
 
-            const currentTotalXP = calculateTotalExp(lvl, pct);
-            
-            // Target XP for Level 92 (which is the cumulative XP of Level 91)
-            const targetData = xpTable.find(d => d.level === 91);
-            if (!targetData) {
-                resultText.innerHTML = "資料錯誤";
-                return;
-            }
-            const targetXP = targetData.cumulative;
+        function handleCurrentLevelChange() {
+            const currentLevelSelect = document.getElementById('targetCurrentLevel');
+            const targetLevelSelect = document.getElementById('targetGoalLevel');
+            const currentLevel = Number(currentLevelSelect.value);
+            const previousTarget = targetLevelSelect.value;
+            const minimumTarget = Number.isInteger(currentLevel) && currentLevel >= 1
+                ? currentLevel + 1
+                : 2;
 
-            const remainingXP = targetXP - currentTotalXP;
+            populateLevelSelect(targetLevelSelect, minimumTarget, 93, previousTarget);
+            calculateTargetTime();
+        }
 
-            if (remainingXP <= 0) {
-                 resultText.innerHTML = `<span class="text-yellow-400 font-bold">恭喜！</span> 你的經驗值已經足夠升上 92 級了！`;
-                 return;
-            }
+        function showTargetPrompt() {
+            const allInputs = [
+                document.getElementById('targetCurrentLevel'),
+                document.getElementById('targetCurrentPercent'),
+                document.getElementById('targetDailyPercent'),
+                document.getElementById('targetGoalLevel')
+            ];
 
-            const currentLevelData = getTableData(lvl);
-            if (!currentLevelData) {
-                resultText.innerHTML = "等級資料錯誤";
-                return;
-            }
-            const dailyXP = currentLevelData.upgrade * (dailyPct / 100);
+            allInputs.forEach(input => setTargetInputInvalid(input, false));
 
-            const daysNeeded = Math.ceil(remainingXP / dailyXP);
+            const error = document.getElementById('targetError');
+            error.textContent = '';
+            error.classList.add('hidden');
+            document.getElementById('targetDays').textContent = '--';
+            document.getElementById('targetDuration').textContent = '請選擇等級並輸入經驗值後查看結果';
+            const journey = document.getElementById('targetJourney');
+            journey.innerHTML = '';
+            journey.setAttribute('aria-label', '升級旅程');
+            document.getElementById('targetBasis').textContent = '每日成長會依目前等級換算成固定經驗值';
+        }
 
-            let timeString = "";
-            if (daysNeeded > 365) {
-                const years = Math.floor(daysNeeded / 365);
-                const days = daysNeeded % 365;
-                timeString = `<span class="text-yellow-400 text-2xl font-bold mx-1">${years}</span> 年 <span class="text-yellow-400 text-2xl font-bold mx-1">${days}</span> 天`;
-            } else {
-                timeString = `<span class="text-yellow-400 text-2xl font-bold mx-1">${daysNeeded}</span> 天`;
-            }
+        function showTargetError(message, invalidInputs = []) {
+            const allInputs = [
+                document.getElementById('targetCurrentLevel'),
+                document.getElementById('targetCurrentPercent'),
+                document.getElementById('targetDailyPercent'),
+                document.getElementById('targetGoalLevel')
+            ];
 
-            resultText.innerHTML = `
-                你目前等級是 <span class="text-white font-bold">${lvl}</span>，
-                經驗值是 <span class="text-white font-bold">${pct}%</span>，
-                每天可以練 <span class="text-white font-bold">${dailyPct}%</span>，<br class="md:hidden">
-                達到 92 級還有 ${timeString}，加油！
+            allInputs.forEach(input => setTargetInputInvalid(input, invalidInputs.includes(input)));
+
+            const error = document.getElementById('targetError');
+            error.textContent = message;
+            error.classList.remove('hidden');
+            document.getElementById('targetDays').textContent = '--';
+            document.getElementById('targetDuration').textContent = '請修正輸入資料後查看結果';
+            document.getElementById('targetJourney').innerHTML = '';
+            document.getElementById('targetBasis').textContent = '每日成長會依目前等級換算成固定經驗值';
+        }
+
+        function renderJourney(segments, currentLevel, targetLevel) {
+            const journey = document.getElementById('targetJourney');
+            journey.setAttribute('aria-label', `從 ${currentLevel} 級升到 ${targetLevel} 級的預估旅程`);
+
+            const segmentMarkup = segments.map((segment, index) => `
+                <div class="journey-segment">
+                    <div class="journey-level">Lv.${segment.from}</div>
+                    <div class="journey-marker-row" aria-hidden="true">
+                        <span class="journey-node ${index === 0 ? 'journey-node-current' : ''}"></span>
+                        <span class="journey-line"></span>
+                    </div>
+                    <div class="journey-days">${formatWholeNumber(segment.days)} 天</div>
+                </div>
+            `).join('');
+
+            journey.innerHTML = `
+                <div class="journey-track">
+                    ${segmentMarkup}
+                    <div class="journey-final">
+                        <div class="journey-level">Lv.${targetLevel}</div>
+                        <span class="journey-node journey-node-target" aria-hidden="true"></span>
+                    </div>
+                </div>
             `;
         }
+
+        function calculateTargetTime() {
+            const currentLevelInput = document.getElementById('targetCurrentLevel');
+            const currentPercentInput = document.getElementById('targetCurrentPercent');
+            const dailyPercentInput = document.getElementById('targetDailyPercent');
+            const targetLevelInput = document.getElementById('targetGoalLevel');
+            const inputs = [currentLevelInput, currentPercentInput, dailyPercentInput, targetLevelInput];
+
+            inputs.forEach(input => setTargetInputInvalid(input, false));
+            document.getElementById('targetError').classList.add('hidden');
+
+            const currentLevel = Number(currentLevelInput.value);
+            const currentPercent = Number(currentPercentInput.value);
+            const dailyPercent = Number(dailyPercentInput.value);
+            const targetLevel = Number(targetLevelInput.value);
+
+            if (inputs.some(input => input.value.trim() === '')) {
+                showTargetPrompt();
+                return;
+            }
+
+            if (!Number.isInteger(currentLevel) || currentLevel < 1 || currentLevel > 92) {
+                showTargetError('目前等級必須是 1 到 92 之間的整數。', [currentLevelInput]);
+                return;
+            }
+
+            if (!Number.isFinite(currentPercent) || currentPercent < 0 || currentPercent >= 100) {
+                showTargetError('目前經驗值必須介於 0% 到 99.9999% 之間。', [currentPercentInput]);
+                return;
+            }
+
+            if (!Number.isFinite(dailyPercent) || dailyPercent <= 0) {
+                showTargetError('每日成長經驗必須大於 0%。', [dailyPercentInput]);
+                return;
+            }
+
+            if (!Number.isInteger(targetLevel) || targetLevel < 2 || targetLevel > 93) {
+                showTargetError('目標等級必須是 2 到 93 之間的整數。', [targetLevelInput]);
+                return;
+            }
+
+            if (targetLevel <= currentLevel) {
+                showTargetError('目標等級必須高於目前等級。', [targetLevelInput]);
+                return;
+            }
+
+            const currentLevelData = getTableData(currentLevel);
+            const targetExp = getLevelStartExp(targetLevel);
+            if (!currentLevelData || targetExp === null) {
+                showTargetError('找不到對應的等級經驗資料，請重新輸入。', [currentLevelInput, targetLevelInput]);
+                return;
+            }
+
+            const currentTotalExp = calculateTotalExp(currentLevel, currentPercent);
+            const dailyExp = currentLevelData.upgrade * (dailyPercent / 100);
+            const remainingExp = targetExp - currentTotalExp;
+            const daysNeeded = Math.ceil(remainingExp / dailyExp);
+
+            if (!Number.isFinite(daysNeeded) || daysNeeded <= 0) {
+                showTargetError('目前資料無法產生有效的預估天數。', inputs);
+                return;
+            }
+
+            const years = Math.floor(daysNeeded / 365);
+            const days = daysNeeded % 365;
+            document.getElementById('targetDays').textContent = formatWholeNumber(daysNeeded);
+            document.getElementById('targetDuration').textContent = years > 0
+                ? `約 ${years} 年 ${days} 天`
+                : `約 ${daysNeeded} 天`;
+            document.getElementById('targetBasis').textContent = `每日固定使用 Lv.${currentLevel} 的 ${formatPercent(dailyPercent)}% 經驗值換算`;
+
+            const segments = [];
+            let previousBoundaryDay = 0;
+            for (let nextLevel = currentLevel + 1; nextLevel <= targetLevel; nextLevel++) {
+                const boundaryExp = getLevelStartExp(nextLevel);
+                const cumulativeBoundaryDay = Math.ceil((boundaryExp - currentTotalExp) / dailyExp);
+                segments.push({
+                    from: nextLevel - 1,
+                    to: nextLevel,
+                    days: Math.max(0, cumulativeBoundaryDay - previousBoundaryDay)
+                });
+                previousBoundaryDay = cumulativeBoundaryDay;
+            }
+
+            renderJourney(segments, currentLevel, targetLevel);
+        }
         
-        // Initial calculation on load for default values
+        // Initialize the level menus without preselecting user data.
         window.onload = () => {
+            initializeTargetLevelSelects();
             calculateMerge();
-            calculateTime92();
+            calculateTargetTime();
         }
     </script>
 </body>
